@@ -64,7 +64,8 @@ namespace Snowflake.Data.Core.Authenticator
                 return new ExternalBrowserAuthenticator(session);
             }
             // Okta would provide a url of form: https://xxxxxx.okta.com
-            else if (type.EndsWith("okta.com") && type.StartsWith("https://"))
+            // Modified to take in urls with extensions like oktapreview.com amd okta.emea.com
+            else if (type.EndsWith("okta*.com") && type.StartsWith("https://"))
             {
                 return new OktaAuthenticator(session, type);
             }
